@@ -1,5 +1,5 @@
-#====================  CODE IS WORKING  ====================
-
+# ===  CODE IS WORKING  === #
+ 
 # input_layer_size = 5 units
 # hidden_layer_size = 4 units
 # num_labels = 1 unit(ouput layer)
@@ -22,21 +22,15 @@
 # np.delete(a,0,1)           --> delete first column
 # np.delete(a,1,0)           --> delete second column
 
-
-#====================== Code ================================
 import numpy as np
 
-#===================== Sigmoid function =====================
 def sigmoid(z) :
 	return 1.0 / (1.0 + np.exp(-z))
 
-#===================== Sigmoid Gradient =====================
 def sigmoidGradient(z) :
 	return sigmoid(z) * (1.0 - sigmoid(z))
 
-#==================== Neural network ========================
-class NeuralNetwork(object):
-	
+class NeuralNetwork(object):	
 	# Function to initialize
 	def __init__(self, x, hidden, ly, iterations, learningRate):
 		#            x : Number of units of hidden layer
@@ -63,10 +57,8 @@ class NeuralNetwork(object):
 	def trainData(self, X, y):
 		self.m = X.shape[0]
 		for i in range(self.iterations):
-		
 			
-			# Forward propagation=============================================
-			
+			# Forward propagation
 			# activation function of input layer which is equal to x(input) - a1
 			a1 = np.c_[np.ones(shape=(self.m,1)), X]
 			z2 = np.dot(a1, np.transpose(self.theta1))
@@ -77,9 +69,7 @@ class NeuralNetwork(object):
 			a3 = sigmoid(z3)
 			h = a3
 			
-			
-			# Backward propagation============================================
-			
+			# Backward propagation
 			# Find delta of predicted values 'h' and real output 'y'
 			delta3 = h-y
 			# delta of hidden layer - delta2
@@ -136,9 +126,8 @@ Neural = NeuralNetwork(5,4,2,100000,0.01)
 Neural.trainData(X,y)
 
 # predictOutput
-predict_x=np.array([[2,3,1,2,3]])
+predict_x = np.array([[2,3,1,2,3]])
 prediction = Neural.predictOutput(predict_x)
 
 # printOutput
 print prediction
-
